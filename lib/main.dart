@@ -18,8 +18,8 @@ Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   if(kIsWeb){
     await Firebase.initializeApp(options: FirebaseOptions(
-        apiKey: "AIzaSyDsd23jlACVUPwz7h_Gl0Sxuyue91nuPW0",
-        appId: "1:177562704830:web:3677401a598a2fa3f077ef",
+        apiKey: Firebase_Api,
+        appId: Firebase_AppId,
         messagingSenderId: "177562704830",
         projectId: "sathi-e746c"));
   }
