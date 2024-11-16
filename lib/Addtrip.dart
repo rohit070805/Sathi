@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:sathi/colors.dart';
+import 'package:sathi/firestor.dart';
+import 'package:sathi/main.dart';
 
 
 class addTrip extends StatefulWidget {
@@ -39,6 +42,7 @@ class _addTripState extends State<addTrip> {
       });
     }
   }
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
 
@@ -53,7 +57,7 @@ class _addTripState extends State<addTrip> {
         title: const Text("P o s t",style: TextStyle(color: Colors.white,fontSize: 30),),
       ),
       body: Center(
-        child: Container(
+        child: isLoading?CircularProgressIndicator(color: Colors.black,):Container(
             margin: EdgeInsets.only(left: 20,right: 20),
             child: SingleChildScrollView(
               child: Column(
@@ -204,7 +208,15 @@ class _addTripState extends State<addTrip> {
                       SizedBox(
                         height: 60,
                         child: ElevatedButton(onPressed: ()async{
+                          setState(() {
+                            isLoading= true;
+                          });
+                          await Firebase_firestor().CreatePost(starting: start.text, destination: end.text, startdate: DateTime.parse(startdate.text), endDate: DateTime.parse(enddate.text), members: int.parse(people.text));
+                          Fluttertoast.showToast(msg: "Posted Successfully");
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BottomNavigate()));
+
                           },
+
                             style:  ElevatedButton.styleFrom(
                               backgroundColor: appColor,
                             ),
