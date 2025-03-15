@@ -19,6 +19,7 @@ class _aichatscreenState extends State<aichatscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -42,20 +43,18 @@ class _aichatscreenState extends State<aichatscreen> {
   }
   void _sendMessage(ChatMessage chatMessage){
    setState(() {
-     messages = [chatMessage, ...messages];
-   });
+     messages = [chatMessage, ...messages];});
    String question = chatMessage.text;
    try{
      gemini.streamGenerateContent(question).listen((event) {
        ChatMessage? lastMessage = messages.firstOrNull;
        if (lastMessage != null && lastMessage.user == geminiUser) {
          lastMessage = messages.removeAt(0);
-         String response = event.content?.parts?.fold("", (previous, current) => "$previous ${current.text}") ?? "";lastMessage.text += response;
+         String response = event.content?.parts?.fold("", (previous, current) => "$previous ${current.text}") ??
+             "";lastMessage.text += response;
          setState(
                () {
-             messages = [lastMessage!, ...messages];
-           },
-         );
+             messages = [lastMessage!, ...messages];},);
        } else {
          String response = event.content?.parts?.fold("", (previous, current) => "$previous ${current.text}") ?? "";
          ChatMessage message = ChatMessage(
@@ -65,12 +64,5 @@ class _aichatscreenState extends State<aichatscreen> {
          );
          setState(() {
            messages = [message, ...messages];
-         });
-       }
-     });
-
-   } catch(e){
-     print(e);
-   }
-  }
-}
+         });}});} catch(e){
+     print(e);}}}

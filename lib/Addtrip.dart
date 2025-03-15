@@ -47,6 +47,7 @@ class _addTripState extends State<addTrip> {
   Widget build(BuildContext context) {
 
     return  Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -167,8 +168,8 @@ class _addTripState extends State<addTrip> {
                           readOnly: true,
                           onTap: (){
                             if(startDate == null){
-                              const snackbar = SnackBar(content: Text("Select Starting Date First!!"));
-                              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                              Fluttertoast.showToast(msg: "Select Starting Date First!", toastLength: Toast.LENGTH_SHORT);
+
                             }else {
                               _selectDate(enddate);
                             }
@@ -218,7 +219,11 @@ class _addTripState extends State<addTrip> {
                           },
 
                             style:  ElevatedButton.styleFrom(
+                              elevation: 10,
+                              foregroundColor: Colors.white,
                               backgroundColor: appColor,
+
+                              shadowColor: Colors.black.withOpacity(0.5)
                             ),
                             child: const Icon(Icons.done,color: Colors.white,size: 40,)),
                       )

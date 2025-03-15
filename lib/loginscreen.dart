@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sathi/colors.dart';
 import 'package:sathi/firebase_auth_services.dart';
+import 'package:sathi/scanaadhar.dart';
 import 'package:sathi/signupscreen.dart';
 import 'package:sathi/main.dart';
 class LoginScreen extends StatefulWidget {
@@ -105,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Text("Don't have a Account?",style: TextStyle(fontSize: 16),),
                         InkWell(
                             onTap: (){
-                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const SignupScreen()));
+                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Scanaadhar()));
                           },
                             child: const Text("Sign Up!",style: TextStyle(fontSize: 18,color: Colors.blue),))
                       ],
